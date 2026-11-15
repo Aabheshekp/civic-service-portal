@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    ports: ["8006:8000"]
+    environment:
+      DJANGO_SECRET_KEY: "${DJANGO_SECRET_KEY:-local-container-demo-key-change-me}"
+      DJANGO_DEBUG: "0"
+      DJANGO_ALLOWED_HOSTS: "localhost,127.0.0.1"
+      CIVIC_DB: /data/civic.sqlite3
+    volumes: ["civic_data:/data"]
+volumes:
+  civic_data:
